@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Design Tokens（HSL 三元组，与 shadcn/ui 约定对齐）
+   ── 品牌换肤只改「品牌色」4 个变量，全站自动生效 ──
+   ============================================================ */
+:root {
+  /* === 品牌色（换肤改这里，HSL 空格三元组）=== */
+  --brand: 224 76% 48%;        /* 主品牌色（默认工业蓝 #1d4ed8）：按钮/链接/强调 */
+  --brand-dark: 224 76% 33%;   /* 深一档（#1e3a8a）：悬停、页脚深底 */
+  --brand-light: 217 91% 60%;  /* 亮一档（#3b82f6）：eyebrow、次级强调 */
+  --brand-tint: 220 88% 97%;   /* 浅底（#eff4fe）：区块背景、标签底 */
+
+  /* === 中性色 === */
+  --ink: 221 39% 11%;          /* 正文墨色 #111827 */
+  --paper: 0 0% 100%;          /* 页面底色 #ffffff */
+  --line: 220 13% 91%;         /* 分隔线/边框 #e5e7eb */
+
+  /* === shadcn 语义色（组件库引用；primary/ring/accent 已接到品牌色）=== */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 14% 96%;
+  --secondary-foreground: var(--ink);
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+  --accent: var(--brand-tint);
+  --accent-foreground: var(--brand-dark);
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--brand-light);
+  --card: 0 0% 100%;
+  --card-foreground: var(--ink);
+  --popover: 0 0% 100%;
+  --popover-foreground: var(--ink);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  * {
+    @apply border-border;
+  }
+}
+
+@layer components {
+  /* 页面容器 */
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  /* 区块小标题（eyebrow） */
+  .section-eyebrow {
+    @apply mb-2 text-xs font-bold uppercase tracking-widest text-brand-light;
+  }
+  /* 区块大标题 */
+  .section-title {
+    @apply text-2xl font-bold text-ink sm:text-3xl;
+  }
+  /* 通用卡片底（简单 div 场景；结构化场景用 ui/Card） */
+  .card {
+    @apply rounded-lg border border-line bg-paper;
+  }
+  /* 原生 select（移动端体验最优 + optgroup 分组），视觉与 ui/Input 对齐 */
+  .field {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none focus:ring-2 focus:ring-ring;
+  }
+}
