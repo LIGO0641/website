@@ -21,7 +21,7 @@ export default async function HomePage() {
     <>
       {/* Hero Banner */}
       <section className="relative bg-brand-dark text-white">
-        <div className="container-x grid items-center gap-8 py-16 md:grid-cols-2 md:py-24">
+        <div className={`container-x grid items-center gap-8 py-16 md:py-24 ${hero.image ? 'md:grid-cols-2' : ''}`}>
           <div>
             <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
               {hero.title}
@@ -34,15 +34,17 @@ export default async function HomePage() {
               <Button asChild size="lg" variant="secondary"><Link href="/products">Browse Products</Link></Button>
             </div>
           </div>
-          <div className="overflow-hidden rounded-lg">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={hero.image}
-              alt={`${settings.companyName} — ${settings.tagline}`}
-              className="h-full w-full object-cover"
-              width={800} height={600}
-            />
-          </div>
+          {hero.image && (
+            <div className="overflow-hidden rounded-lg">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={hero.image}
+                alt={`${settings.companyName} — ${settings.tagline}`}
+                className="h-full w-full object-cover"
+                width={800} height={600}
+              />
+            </div>
+          )}
         </div>
       </section>
 
