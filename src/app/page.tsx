@@ -21,12 +21,24 @@ export default async function HomePage() {
     <>
       {/* Hero Banner */}
       <section className="relative bg-brand-dark text-white">
-        <div className={`container-x grid items-center gap-8 py-16 md:py-24 ${hero.image ? 'md:grid-cols-2' : ''}`}>
-          <div>
+        {hero.image && (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={hero.image}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-brand-dark/40" />
+          </>
+        )}
+        <div className="relative container-x py-24 md:py-32">
+          <div className="max-w-2xl">
             <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
               {hero.title}
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/80">
+            <p className="mt-4 text-base leading-relaxed text-white/80">
               {hero.subtitle}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -34,17 +46,6 @@ export default async function HomePage() {
               <Button asChild size="lg" variant="secondary"><Link href="/products">Browse Products</Link></Button>
             </div>
           </div>
-          {hero.image && (
-            <div className="overflow-hidden rounded-lg">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={hero.image}
-                alt={`${settings.companyName} — ${settings.tagline}`}
-                className="h-full w-full object-cover"
-                width={800} height={600}
-              />
-            </div>
-          )}
         </div>
       </section>
 
